@@ -1,0 +1,668 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | Le Gateau</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .cake-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .cake-actions .btn {
+            text-align: center;
+            padding: 12px 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        .cake-actions .customise-btn {
+            background: transparent;
+            color: #512b1d;
+            border: 1px solid #512b1d;
+        }
+
+        .cake-actions .customise-btn:hover {
+            background: #f4e8e2;
+        }
+
+        .order-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(35, 22, 17, 0.65);
+            padding: 20px;
+            overflow-y: auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .order-modal.show {
+            display: flex;
+        }
+
+        .order-box {
+            background: #fffaf7;
+            color: #512b1d;
+            width: 100%;
+            max-width: 500px;
+            padding: 28px;
+            box-sizing: border-box;
+            position: relative;
+            border-radius: 8px;
+        }
+
+        .order-box h2 {
+            margin-top: 0;
+        }
+
+        .order-close {
+            position: absolute;
+            right: 15px;
+            top: 12px;
+            border: none;
+            background: transparent;
+            font-size: 28px;
+            cursor: pointer;
+            color: #512b1d;
+        }
+
+        .order-box label {
+            display: block;
+            margin: 14px 0 6px;
+            font-weight: 600;
+        }
+
+        .order-box input,
+        .order-box textarea {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border: 1px solid #ddc9be;
+            background: white;
+            font: inherit;
+            color: #512b1d;
+        }
+
+        .order-box textarea {
+            resize: vertical;
+        }
+
+        .order-total {
+            font-size: 19px;
+            font-weight: bold;
+            margin: 18px 0;
+        }
+
+        .order-message {
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        .order-box .submit-order {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            font: inherit;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 480px) {
+            .cake-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .order-box {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <a href="index.html" class="brand">
+        <span>LE GATEAU</span>
+        <small>CAKE SHOP</small>
+    </a>
+
+    <nav>
+        <a class="active" href="menu.html">Menu</a>
+        <a href="customise.html">Customise</a>
+        <a href="orders.html">My Orders</a>
+    </nav>
+
+    <a href="login.html" class="login-btn">Login / Register</a>
+</header>
+
+<main class="section">
+
+    <p class="eyebrow">BROWSE</p>
+    <h1>The menu</h1>
+
+    <p class="hero-text narrow">
+        Choose a cake from our menu and order it directly,
+        or visit Customise to create a cake your way.
+    </p>
+
+    <div class="filters">
+        <button type="button" class="filter active" data-filter="all">All</button>
+        <button type="button" class="filter" data-filter="signature">Signature</button>
+        <button type="button" class="filter" data-filter="chocolate">Chocolate</button>
+        <button type="button" class="filter" data-filter="fruit">Fruit</button>
+        <button type="button" class="filter" data-filter="classic">Classic</button>
+    </div>
+
+    <div class="cake-grid">
+
+        <!-- Ferrero Rocher -->
+        <div class="cake-card menu-cake"
+             data-category="signature classic chocolate"
+             data-cake="Ferrero Rocher Cake"
+             data-price="950">
+            <img src="images/ferrero rocher.png" alt="Ferrero Rocher Cake">
+            <div class="cake-info">
+                <h3>Ferrero Rocher Cake <span>₹950</span></h3>
+                <p class="meta">FERRERO ROCHER · SERVES 10</p>
+                <p>Experience the goodness of Ferrero Rocher and chocolate cake in every bite!</p>
+                <div class="cake-actions">
+                    <button type="button" class="btn full order-btn">Order</button>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Dark Chocolate Fantasy -->
+        <div class="cake-card menu-cake"
+             data-category="signature chocolate"
+             data-cake="Dark Chocolate Fantasy"
+             data-price="900">
+            <img src="images/dark chocolate.png" alt="Dark Chocolate Fantasy">
+            <div class="cake-info">
+                <h3>Dark Chocolate Fantasy <span>₹900</span></h3>
+                <p class="meta">DARK CHOCOLATE · SERVES 10</p>
+                <p>Enjoy rich cocoa goodness and delicious chocolate layers.</p>
+                <div class="cake-actions">
+                    <button type="button" class="btn full order-btn">Order</button>
+                   
+                </div>
+            </div>
+        </div>
+
+        <!-- Rasmalai -->
+        <div class="cake-card menu-cake"
+             data-category="signature classic"
+             data-cake="Rasmalai Cake"
+             data-price="950">
+            <img src="images/rasmalai.png" alt="Rasmalai Cake">
+            <div class="cake-info">
+                <h3>Rasmalai Cake <span>₹950</span></h3>
+                <p class="meta">RASMALAI CREAM · SERVES 10</p>
+                <p>Creamy Rasmalai and vanilla sponge with pistachios, almonds and rose petals.</p>
+                <div class="cake-actions">
+                    <button type="button" class="btn full order-btn">Order</button>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Rainbow Pastel -->
+        <div class="cake-card menu-cake"
+             data-category="signature classic"
+             data-cake="Rainbow Pastel Cake"
+             data-price="890">
+            <img src="images/rainbow.png" alt="Rainbow Pastel Cake">
+            <div class="cake-info">
+                <h3>Rainbow Pastel Cake <span>₹890</span></h3>
+                <p class="meta">RAINBOW · SERVES 12</p>
+                <p>Layer upon layer of colourful cream cheese frosting makes it tempting.</p>
+                <div class="cake-actions">
+                    <button type="button" class="btn full order-btn">Order</button>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Salted Caramel -->
+        <div class="cake-card menu-cake"
+             data-category="signature"
+             data-cake="Salted Caramel Noir"
+             data-price="850">
+            <img src="images/salted caramel.png" alt="Salted Caramel Noir">
+            <div class="cake-info">
+                <h3>Salted Caramel Noir <span>₹850</span></h3>
+                <p class="meta">SALTED CARAMEL · SERVES 10</p>
+                <p>Salted caramel drip over rich chocolate layers.</p>
+                <div class="cake-actions">
+                    <button type="button" class="btn full order-btn">Order</button>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Strawberry Silk -->
+        <div class="cake-card menu-cake"
+             data-category="fruit"
+             data-cake="Strawberry Silk"
+             data-price="750">
+            <img src="images/strawberry.png" alt="Strawberry Silk">
+            <div class="cake-info">
+                <h3>Strawberry Silk <span>₹750</span></h3>
+                <p class="meta">STRAWBERRY · SERVES 8</p>
+                <p>Fresh strawberry compote with smooth vanilla cream.</p>
+                <div class="cake-actions">
+                    <button type="button" class="btn full order-btn">Order</button>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Vanilla Pearl -->
+        <div class="cake-card menu-cake"
+             data-category="classic"
+             data-cake="Vanilla Pearl"
+             data-price="650">
+            <img src="images/vanilla.png" alt="Vanilla Pearl">
+            <div class="cake-info">
+                <h3>Vanilla Pearl <span>₹650</span></h3>
+                <p class="meta">VANILLA · SERVES 8</p>
+                <p>Madagascar vanilla cake decorated with colourful pearls.</p>
+                <div class="cake-actions">
+                    <button type="button" class="btn full order-btn">Order</button>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Baked Cheesecake -->
+        <div class="cake-card menu-cake"
+             data-category="classic fruit"
+             data-cake="4 in 1 Baked Cheesecake"
+             data-price="999">
+            <img src="images/cheesecakeg.png" alt="4 in 1 Baked Cheesecake">
+            <div class="cake-info">
+                <h3>4 in 1 Baked Cheesecake <span>₹999</span></h3>
+                <p class="meta">CHEESECAKE · SERVES 8</p>
+                <p>Creamy baked cheesecake with blueberry, strawberry, salted caramel and Lotus Biscoff toppings.</p>
+                <div class="cake-actions">
+                    <button type="button" class="btn full order-btn">Order</button>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Irish Coffee -->
+        <div class="cake-card menu-cake"
+             data-category="classic"
+             data-cake="Irish Coffee"
+             data-price="890">
+            <img src="images/irish coffee.png" alt="Irish Coffee Cake">
+            <div class="cake-info">
+                <h3>Irish Coffee <span>₹890</span></h3>
+                <p class="meta">COFFEE · SERVES 8</p>
+                <p>Vanilla sponge soaked in coffee syrup and layered with cream frosting.</p>
+                <div class="cake-actions">
+                    <button type="button" class="btn full order-btn">Order</button>
+                    
+                </div>
+            </div>
+        </div>
+
+
+                 <div class="cake-card menu-cake"
+             data-category="classic"
+             data-cake="Tiramisu Jar"
+             data-price="250">
+            <img src="images/tiramisujar.png" alt="Tiramisu Jar">
+            <div class="cake-info">
+                <h3>Tiramisu Jar <span>₹250</span></h3>
+                <p>Vanilla biscuits soaked in coffee syrup and layered with cream frosting.</p>
+                <div class="cake-actions">
+                    <button type="button" class="btn full order-btn">Order</button>
+                    
+                </div>
+            </div>
+        </div>
+         <div class="cake-card menu-cake"
+             data-category="classic"
+             data-cake="Red Velvet Jar"
+             data-price="250">
+            <img src="images/redvelvetjar.png" alt="Red velvet Jar">
+            <div class="cake-info">
+                <h3>Red velvet Jar <span>₹250</span></h3>
+                <p>Ruby-red velvet sponge cake and tangy cream cheese or whipped white frosting </p>
+                <div class="cake-actions">
+                    <button type="button" class="btn full order-btn">Order</button>
+                    
+                </div>
+            </div>
+        </div>
+
+         <div class="cake-card menu-cake"
+             data-category="classic"
+             data-cake="Rasmalai Jar"
+             data-price="250">
+            <img src="images/rasmalaijar.png" alt="Rasmalai Jar">
+            <div class="cake-info">
+                <h3>Rasmalai Jar <span>₹250</span></h3>
+                <p>Luscious layers of lightly sweetened cream folded with actual pieces of juicy Rasmalai with crown of chopped pistachios, almonds, and fragrant dried rose petals.</p>
+                <div class="cake-actions">
+                    <button type="button" class="btn full order-btn">Order</button>
+                    
+                </div>
+            </div>
+        </div>
+
+         <div class="cake-card menu-cake"
+             data-category="classic"
+             data-cake="Delightful Creature Celebration Cake"
+             data-price="1790">
+            <img src="images/delightfulcreature.png" alt="Delightful Creature Celebration Cake">
+            <div class="cake-info">
+                <h3>Delightful Creature Celebration Cake <span>₹1790</span></h3>
+                <p class="meta">DELIGHTFUL CREATURE · SERVES 8</p>
+                <p>This charming cake is perfect for any animal lover, showcasing a menagerie of friends from the farm and the jungle playfully and vibrantly.
+</p>
+                <div class="cake-actions">
+                    <button type="button" class="btn full order-btn">Order</button>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="cake-card menu-cake"
+             data-category="classic chocolate"
+             data-cake="Lion King Cake"
+             data-price="1500">
+            <img src="images/lionking.png" alt="Lion King Cake">
+            <div class="cake-info">
+                <h3>Lion King Cake <span>1500</span></h3>
+                <p class="meta">Lion King · SERVES 8</p>
+                <p>Delightful cake with Vanilla and chocolate for all the lion king lovers.</p>
+                <div class="cake-actions">
+                    <button type="button" class="btn full order-btn">Order</button>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="cake-card menu-cake"
+             data-category="classic fruit"
+             data-cake="Jungle Safari Cake"
+             data-price="1800">
+            <img src="images/junglesafari.png" alt="Jungle Safari Cake">
+            <div class="cake-info">
+                <h3>Jungle Safari Cake <span>₹1800</span></h3>
+                <p class="meta">Jungle Safari · SERVES 8</p>
+                <p>Experience the thrill of the wild with this vibrant cake featuring tropical fruits and exotic flavors.</p>
+                <div class="cake-actions">
+                    <button type="button" class="btn full order-btn">Order</button>
+                    
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+</main>
+
+<!-- QUICK ORDER FORM -->
+<div class="order-modal" id="orderModal" role="dialog"
+     aria-modal="true" aria-labelledby="orderTitle">
+    <div class="order-box">
+        <button type="button" class="order-close" id="closeOrder"
+                aria-label="Close">&times;</button>
+
+        <p class="eyebrow">PLACE YOUR ORDER</p>
+        <h2 id="orderTitle">Order your cake</h2>
+        <p id="selectedCakeName"></p>
+
+        <form id="quickOrderForm">
+            <label for="orderQuantity">Quantity</label>
+            <input type="number" id="orderQuantity" min="1" max="20"
+                   value="1" required>
+
+            <label for="orderDeliveryDate">Delivery date</label>
+            <input type="date" id="orderDeliveryDate" required>
+
+            <label for="orderAddress">Delivery address</label>
+            <textarea id="orderAddress" rows="3" minlength="10"
+                      maxlength="500" required
+                      placeholder="Enter your complete delivery address"></textarea>
+
+            <p class="order-total">
+                Total: <span id="orderTotal">₹950</span>
+            </p>
+
+            <button type="submit" class="btn submit-order" id="submitOrder">
+                Place Order
+            </button>
+
+            <p id="orderMessage" class="order-message" role="status"></p>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <div>
+        <h3>LE GATEAU</h3>
+        <p>Small-batch celebration cakes, baked fresh for every order.</p>
+    </div>
+
+    <div>
+        <p class="eyebrow">SHOP</p>
+        <p>
+            Shop No.3, Shivkrupa Apt, Near SBI ATM,
+            Thane Bhiwandi Road, Swaraj Nagar,
+            Bhiwandi-421302<br>
+            Mon–Sun, 10am–8pm
+        </p>
+    </div>
+
+    <div>
+        <p class="eyebrow">CONTACT</p>
+        <p>
+            Phone: 07942691761<br>
+            Please order 48 hours ahead
+        </p>
+    </div>
+</footer>
+
+<script>
+"use strict";
+
+/* MENU FILTERS */
+const filterButtons = document.querySelectorAll(".filter");
+const cakeCards = document.querySelectorAll(".menu-cake");
+
+filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        filterButtons.forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+
+        const filter = button.dataset.filter;
+
+        cakeCards.forEach(card => {
+            const categories = (card.dataset.category || "").split(/\s+/);
+            card.style.display =
+                filter === "all" || categories.includes(filter) ? "" : "none";
+        });
+    });
+});
+
+/* QUICK ORDER FORM */
+const modal = document.getElementById("orderModal");
+const closeOrder = document.getElementById("closeOrder");
+const quickOrderForm = document.getElementById("quickOrderForm");
+const quantityInput = document.getElementById("orderQuantity");
+const deliveryDateInput = document.getElementById("orderDeliveryDate");
+const addressInput = document.getElementById("orderAddress");
+const totalText = document.getElementById("orderTotal");
+const message = document.getElementById("orderMessage");
+const submitButton = document.getElementById("submitOrder");
+
+let selectedCake = "";
+let selectedPrice = 0;
+
+/* Delivery must be at least 48 hours ahead */
+const earliestDate = new Date();
+earliestDate.setHours(0, 0, 0, 0);
+earliestDate.setDate(earliestDate.getDate() + 2);
+
+deliveryDateInput.min =
+    earliestDate.getFullYear() + "-" +
+    String(earliestDate.getMonth() + 1).padStart(2, "0") + "-" +
+    String(earliestDate.getDate()).padStart(2, "0");
+
+function updateOrderTotal() {
+    let quantity = Number(quantityInput.value);
+
+    if (!Number.isInteger(quantity) || quantity < 1) quantity = 1;
+    if (quantity > 20) quantity = 20;
+
+    totalText.textContent =
+        "₹" + (selectedPrice * quantity).toLocaleString("en-IN");
+}
+
+function showOrderMessage(text, success = false) {
+    message.textContent = text;
+    message.style.color = success ? "#52704f" : "#a13b32";
+}
+
+document.querySelectorAll(".order-btn").forEach(button => {
+    button.addEventListener("click", () => {
+        const card = button.closest(".menu-cake");
+
+        selectedCake = card.dataset.cake;
+        selectedPrice = Number(card.dataset.price);
+
+        document.getElementById("selectedCakeName").textContent =
+            selectedCake + " — ₹" + selectedPrice.toLocaleString("en-IN");
+
+        quantityInput.value = 1;
+        addressInput.value = "";
+        deliveryDateInput.value = "";
+        showOrderMessage("");
+        updateOrderTotal();
+
+        modal.classList.add("show");
+        quantityInput.focus();
+    });
+});
+
+quantityInput.addEventListener("input", updateOrderTotal);
+
+closeOrder.addEventListener("click", () => {
+    modal.classList.remove("show");
+});
+
+modal.addEventListener("click", event => {
+    if (event.target === modal) {
+        modal.classList.remove("show");
+    }
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") modal.classList.remove("show");
+});
+
+quickOrderForm.addEventListener("submit", async event => {
+    event.preventDefault();
+
+    const customerId = localStorage.getItem("customerId");
+
+    if (!customerId) {
+        showOrderMessage("Please login before placing an order.");
+        return;
+    }
+
+    const quantity = Number(quantityInput.value);
+    const deliveryDate = deliveryDateInput.value;
+    const address = addressInput.value.trim();
+
+    if (!Number.isInteger(quantity) || quantity < 1 || quantity > 20) {
+        showOrderMessage("Choose a quantity between 1 and 20.");
+        return;
+    }
+
+    if (!deliveryDate || new Date(deliveryDate + "T00:00:00") < earliestDate) {
+        showOrderMessage("Choose a delivery date at least 2 days from today.");
+        return;
+    }
+
+    if (address.length < 10) {
+        showOrderMessage("Please enter your complete delivery address.");
+        return;
+    }
+
+    const order = {
+        customer_id: Number(customerId),
+        cake_name: selectedCake,
+        size: "Standard",
+        flavour: "",
+        frosting: "",
+        toppings: "None",
+        quantity: quantity,
+        cake_message: "",
+        delivery_date: deliveryDate,
+        address: address,
+        instructions: "",
+        total: selectedPrice * quantity
+    };
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Placing Order...";
+    showOrderMessage("");
+
+    try {
+        const response = await fetch("/api/orders", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(order)
+        });
+
+        const responseText = await response.text();
+        let data;
+
+        try {
+            data = JSON.parse(responseText);
+        } catch {
+            throw new Error(
+                "The server did not return JSON. Check app.js and make sure you opened the site through localhost:3000."
+            );
+        }
+
+        if (!response.ok || !data.success) {
+            throw new Error(data.message || "Your order could not be placed.");
+        }
+
+        showOrderMessage("Order placed successfully! Opening My Orders...", true);
+
+        setTimeout(() => {
+            window.location.href = "orders.html";
+        }, 1000);
+
+    } catch (error) {
+        console.error("Order error:", error);
+        showOrderMessage(error.message || "Unable to connect to the server.");
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Place Order";
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | Le Gateau</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+<header class="header">
+
+    <a href="index.html" class="brand">
+        <span>LE GATEAU</span>
+        <small>CAKE SHOP</small>
+    </a>
+
+    <nav>
+        <a href="menu.html">Menu</a>
+        <a href="customise.html">Customise</a>
+        <a href="orders.html">My Orders</a>
+    </nav>
+
+    <a href="login.html" class="login-btn">
+        Login / Register
+    </a>
+
+</header>
+
+
+
+<main class="account">
+
+
+    <div>
+
+        <p class="eyebrow">
+            YOUR ACCOUNT
+        </p>
+
+        <h1>
+            Order, customise<br>
+            and track.
+        </h1>
+
+        <p class="hero-text">
+            Create an account to keep your orders
+            and delivery details together.
+        </p>
+
+    </div>
+
+
+
+    <div class="auth-box">
+
+        <!-- LOGIN / REGISTER TABS -->
+
+        <div class="tabs">
+
+            <a href="login.html" class="tab">
+                Login
+            </a>
+
+            <button class="tab active" type="button">
+                Register
+            </button>
+
+        </div>
+
+
+
+        <form id="registerForm" class="form">
+
+
+            <!-- FULL NAME -->
+
+            <label>
+
+                Full Name
+
+                <input
+                    id="regName"
+                    type="text"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </label>
+
+
+
+            <label>
+
+                Phone Number
+
+                <input
+                    id="regPhone"
+                    type="tel"
+                    placeholder="10-digit mobile number"
+                    maxlength="10"
+                    required
+                >
+
+            </label>
+
+
+
+            <label>
+
+                Email
+
+                <input
+                    id="regEmail"
+                    type="email"
+                    placeholder="example@email.com"
+                    required
+                >
+
+            </label>
+
+
+
+            <label>
+
+                Password
+
+                <input
+                    id="regPassword"
+                    type="password"
+                    placeholder="Minimum 8 characters"
+                    required
+                >
+
+            </label>
+
+
+
+            <label>
+
+                Confirm Password
+
+                <input
+                    id="regConfirmPassword"
+                    type="password"
+                    placeholder="Re-enter your password"
+                    required
+                >
+
+            </label>
+
+
+
+            <button
+                class="btn full"
+                type="submit"
+            >
+                Create Account
+            </button>
+
+
+
+            <p
+                id="registerMsg"
+                class="message"
+            ></p>
+
+        </form>
+
+    </div>
+
+</main>
+
+
+
+<footer>
+
+    <div>
+
+        <h3>
+            LE GATEAU
+        </h3>
+
+        <p>
+            Small-batch celebration cakes,
+            baked fresh for every order.
+        </p>
+
+    </div>
+
+
+    <div>
+
+        <p class="eyebrow">
+            SHOP
+        </p>
+
+        <p> Shop No.3, Shivkrupa Apt, Near. Sbi ATM, Thane Bhiwandi Road, Swaraj Nagar, Bhiwandi-421302
+
+            kalher, bhiwandi <br>
+            Mon – Sun, 10am – 8pm
+        </p>
+
+    </div>
+
+
+    <div>
+
+        <p class="eyebrow">
+            ORDERS
+        </p>
+
+        <p>
+            Phone NO: 08975266638
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

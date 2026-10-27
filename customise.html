@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Customise Cake | Le Gateau</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<header class="header">
+
+    <a href="index.html" class="brand">
+
+        <span>LE GATEAU</span>
+        <small>CAKE SHOP</small>
+
+    </a>
+
+
+    <nav>
+
+        <a href="menu.html">
+            Menu
+        </a>
+
+        <a class="active" href="customise.html">
+            Customise
+        </a>
+
+        <a href="orders.html">
+            My Orders
+        </a>
+
+    </nav>
+
+
+    <a href="login.html" class="login-btn">
+        Login / Register
+    </a>
+
+</header>
+
+
+<main class="section">
+
+    <p class="eyebrow">
+        STEP TWO
+    </p>
+
+
+    <h1>
+        Customise your cake
+    </h1>
+
+
+    <p class="hero-text">
+
+        Every choice updates the price.
+        We need at least 48 hours' notice.
+
+    </p>
+
+
+    <div class="custom-grid">
+
+
+        <!-- =====================================================
+             ORDER FORM
+        ====================================================== -->
+
+        <form id="orderForm" class="form">
+<input
+    type="hidden"
+    id="cake"
+    value="Ferrero Rocher Cake"
+    data-price="950"
+>
+         <!-- SIZE + QUANTITY -->
+
+            <div class="two">
+
+
+                <label>
+
+                    Size
+
+                    <select id="size" required>
+
+                        <option value="0">
+
+                            8" round — serves 10
+
+                        </option>
+
+
+                        <option value="400">
+
+                            10" round — serves 14 (+₹400)
+
+                        </option>
+
+
+                        <option value="800">
+
+                            12" round — serves 20 (+₹800)
+
+                        </option>
+
+                    </select>
+
+                </label>
+
+
+
+                <label>
+
+                    Quantity
+
+                    <input
+                        id="quantity"
+                        type="number"
+                        min="1"
+                        max="20"
+                        value="1"
+                        required
+                    >
+
+                </label>
+
+            </div>
+
+
+
+            <!-- FLAVOUR + FROSTING -->
+
+            <div class="two">
+
+
+                <label>
+
+                    Sponge flavour
+
+                    <select id="flavour" required>
+
+                        <option>
+                            Dark Chocolate
+                        </option>
+
+                        <option>
+                            Vanilla
+                        </option>
+
+                        <option>
+                            Red Velvet
+                        </option>
+
+                        <option>
+                            Strawberry
+                        </option>
+
+                    </select>
+
+                </label>
+
+
+
+                <label>
+
+                    Frosting
+
+                    <select id="frosting" required>
+
+                        <option>
+                            Blush Buttercream
+                        </option>
+
+                        <option>
+                            Chocolate Ganache
+                        </option>
+
+                        <option>
+                            Vanilla Chantilly
+                        </option>
+
+                        <option>
+                            Cream Cheese
+                        </option>
+                        <option>
+                            Strawberry Cream
+                        </option>
+                        
+
+                    </select>
+
+                </label>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TOPPINGS
+            ================================================== -->
+
+            <label>
+
+                Toppings
+
+                <select id="toppings">
+
+                    <option
+                        value="None"
+                        data-price="0">
+
+                        No Toppings — ₹0
+
+                    </option>
+
+
+                    <option
+                        value="Fresh Fruits"
+                        data-price="100">
+
+                        Fresh Fruits — ₹100
+
+                    </option>
+
+
+                    <option
+                        value="Chocolate Chips"
+                        data-price="80">
+
+                        Chocolate Chips — ₹80
+
+                    </option>
+
+
+                    <option
+                        value="Ferrero Rocher"
+                        data-price="150">
+
+                        Ferrero Rocher — ₹150
+
+                    </option>
+
+
+                    <option
+                        value="Oreo Crumbs"
+                        data-price="80">
+
+                        Oreo Crumbs — ₹80
+
+                    </option>
+
+
+                    <option
+                        value="Mixed Nuts"
+                        data-price="120">
+
+                        Mixed Nuts — ₹120
+
+                    </option>
+
+                </select>
+
+            </label>
+
+
+
+            <!-- CAKE MESSAGE -->
+
+            <label>
+
+                Message on the cake
+
+                
+                <input
+                    id="message"
+                    type="text"
+                    maxlength="50"
+                    placeholder="Happy Birthday, Ananya"
+                >
+
+            </label>
+
+
+
+            <!-- DELIVERY -->
+
+            <div class="two">
+
+
+                <label>
+
+                    Delivery date
+
+                    <input
+                        id="deliveryDate"
+                        type="date"
+                        required
+                    >
+
+                </label>
+
+
+
+                <label>
+
+                    Delivery address
+
+                    <input
+                        id="address"
+                        type="text"
+                        placeholder="Flat, street, city"
+                        required
+                    >
+
+                </label>
+
+            </div>
+
+
+
+            <!-- INSTRUCTIONS -->
+
+            <label>
+
+                Special instructions
+
+                <textarea
+                    id="instructions"
+                    maxlength="300"
+                    placeholder="Eggless, no nuts, deliver after 6pm..."
+                ></textarea>
+
+            </label>
+
+
+
+            <button
+                class="btn full"
+                type="submit">
+
+                Place Order
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- =====================================================
+             SUMMARY
+        ====================================================== -->
+
+        
+
+
+    </div>
+
+</main>
+
+
+
+<footer>
+
+
+    <div>
+
+        <h3>
+            LE GATEAU
+        </h3>
+
+        <p>
+            Small-batch celebration cakes,
+            baked fresh for every order.
+        </p>
+
+    </div>
+
+
+
+    <div>
+
+        <p class="eyebrow">
+            Cake Shop
+        </p>
+
+        <p>
+
+            Shop No.3, Shivkrupa Apt,
+            Near. Sbi ATM, Thane Bhiwandi Road,
+            Swaraj Nagar, Bhiwandi-421302
+
+            <br>
+
+            Mon – Sun, 10am – 8pm
+
+        </p>
+
+    </div>
+
+
+
+    <div>
+
+        <p class="eyebrow">
+            CONTACT
+        </p>
+
+        <p>
+
+            Phone NO: 07942691761
+
+            <br>
+
+            Please order 48 hours ahead
+
+        </p>
+
+    </div>
+
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>

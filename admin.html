@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Dashboard | Le Gateau</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <a
+        href="index.html"
+        class="brand"
+    >
+
+        <span>LE GATEAU</span>
+
+        <small>ADMIN</small>
+
+    </a>
+
+
+    <nav>
+
+        <a href="index.html">
+            Website
+        </a>
+
+        <a
+            class="active"
+            href="admin.html"
+        >
+            Admin Dashboard
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="section">
+
+
+    <p class="eyebrow">
+        ADMINISTRATION
+    </p>
+
+
+    <h1>
+        Le Gateau Dashboard
+    </h1>
+
+
+    <p class="hero-text">
+        Manage customers, orders and delivery status.
+    </p>
+
+
+    <!-- =================================================
+         DASHBOARD SUMMARY
+         ================================================= -->
+
+    <div class="admin-stats">
+
+        <div class="admin-stat">
+
+            <span>
+                CUSTOMERS
+            </span>
+
+            <strong id="customerCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="admin-stat">
+
+            <span>
+                ORDERS
+            </span>
+
+            <strong id="orderCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="admin-stat">
+
+            <span>
+                ACTIVE ORDERS
+            </span>
+
+            <strong id="activeOrderCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="admin-stat">
+
+            <span>
+                DELIVERED
+            </span>
+
+            <strong id="deliveredCount">
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CUSTOMER MANAGEMENT
+         ================================================= -->
+
+    <section class="admin-section">
+
+        <div class="admin-title-row">
+
+            <div>
+
+                <p class="eyebrow">
+                    CUSTOMER MANAGEMENT
+                </p>
+
+                <h2>
+                    Customers
+                </h2>
+
+            </div>
+
+
+            <button
+                class="btn"
+                type="button"
+                onclick="showCustomerForm()"
+            >
+                Add Customer
+            </button>
+
+        </div>
+
+
+        <div
+            id="customerFormContainer"
+            class="admin-form-container"
+            style="display:none;"
+        >
+
+            <h3 id="customerFormTitle">
+                Add Customer
+            </h3>
+
+
+            <form id="customerForm">
+
+                <input
+                    type="hidden"
+                    id="customerId"
+                >
+
+
+                <div class="two">
+
+                    <label>
+
+                        Full Name
+
+                        <input
+                            id="customerName"
+                            type="text"
+                            required
+                        >
+
+                    </label>
+
+
+                    <label>
+
+                        Phone
+
+                        <input
+                            id="customerPhone"
+                            type="tel"
+                            required
+                        >
+
+                    </label>
+
+                </div>
+
+
+                <label>
+
+                    Email
+
+                    <input
+                        id="customerEmail"
+                        type="email"
+                        required
+                    >
+
+                </label>
+
+
+                <div class="admin-form-buttons">
+
+                    <button
+                        class="btn"
+                        type="submit"
+                    >
+                        Save Customer
+                    </button>
+
+
+                    <button
+                        class="btn secondary-btn"
+                        type="button"
+                        onclick="hideCustomerForm()"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <div
+            id="customersTable"
+            class="admin-table"
+        ></div>
+
+    </section>
+
+
+    <!-- =================================================
+         ORDER MANAGEMENT
+         ================================================= -->
+
+    <section class="admin-section">
+
+        <div class="admin-title-row">
+
+            <div>
+
+                <p class="eyebrow">
+                    ORDER MANAGEMENT
+                </p>
+
+                <h2>
+                    Orders
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="ordersTable"
+            class="admin-table"
+        ></div>
+
+    </section>
+
+
+    <!-- =================================================
+         ORDER EDIT FORM
+         ================================================= -->
+
+    <div
+        id="orderEditContainer"
+        class="admin-form-container"
+        style="display:none;"
+    >
+
+        <h3>
+            Edit Order
+        </h3>
+
+
+        <form id="orderEditForm">
+
+            <input
+                type="hidden"
+                id="editOrderId"
+            >
+
+
+            <div class="two">
+
+                <label>
+
+                    Cake
+
+                    <input
+                        id="editCake"
+                        type="text"
+                        required
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Quantity
+
+                    <input
+                        id="editQuantity"
+                        type="number"
+                        min="1"
+                        max="20"
+                        required
+                    >
+
+                </label>
+
+            </div>
+
+
+            <div class="two">
+
+                <label>
+
+                    Delivery Date
+
+                    <input
+                        id="editDeliveryDate"
+                        type="date"
+                        required
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Status
+
+                    <select id="editStatus">
+
+                        <option>
+                            Order Placed
+                        </option>
+
+                        <option>
+                            Order Confirmed
+                        </option>
+
+                        <option>
+                            Baking
+                        </option>
+
+                        <option>
+                            Decorating
+                        </option>
+
+                        <option>
+                            Out for Delivery
+                        </option>
+
+                        <option>
+                            Delivered
+                        </option>
+
+                        <option>
+                            Cancelled
+                        </option>
+
+                    </select>
+
+                </label>
+
+            </div>
+
+
+            <label>
+
+                Delivery Address
+
+                <textarea
+                    id="editAddress"
+                    required
+                ></textarea>
+
+            </label>
+
+
+            <label>
+
+                Special Instructions
+
+                <textarea
+                    id="editInstructions"
+                    maxlength="300"
+                ></textarea>
+
+            </label>
+
+
+            <div class="admin-form-buttons">
+
+                <button
+                    class="btn"
+                    type="submit"
+                >
+                    Update Order
+                </button>
+
+
+                <button
+                    class="btn secondary-btn"
+                    type="button"
+                    onclick="hideOrderEdit()"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+</main>
+
+
+<footer>
+
+    <div>
+
+        <h3>
+            LE GATEAU
+        </h3>
+
+        <p>
+            Small-batch celebration cakes,
+            baked fresh for every order.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+<script src="admin.js"></script>
+
+
+</body>
+
+</html>
