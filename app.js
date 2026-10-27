@@ -28,34 +28,28 @@ app.use(express.static(__dirname));
 // MYSQL CONNECTION
 // ==========================================
 
-const db = mysql.createConnection({
-  host: process.env.DB_HOST || "localhost",
-  port: Number(process.env.DB_PORT) || 3306,
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME || "legateau_db",
-  ssl: {
-    rejectUnauthorized: true
-  }
+const db = mysql.createPool({
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT) || 3306,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    ssl: {
+        rejectUnauthorized: true
+    },
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
 
-
-db.connect(function (error) {
-
+db.getConnection((error, connection) => {
     if (error) {
-
-        console.log("MySQL connection failed:");
-        console.log(error.message);
-
+        console.error("MySQL connection failed:", error.message);
     } else {
-
         console.log("MySQL connected successfully!");
-        console.log("Database: legateau_db");
-
+        connection.release();
     }
-
 });
-
 
 
 
