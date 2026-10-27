@@ -28,7 +28,7 @@ app.use(express.static(__dirname));
 // MYSQL CONNECTION
 // ==========================================
 
-```js
+
 const db = mysql.createPool({
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT) || 3306,
