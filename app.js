@@ -6,6 +6,8 @@ const express = require("express");
 const mysql = require("mysql2");
 const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
+const fs = require("fs");
+const path = require("path");
 
 dotenv.config();
 
@@ -28,7 +30,6 @@ app.use(express.static(__dirname));
 // MYSQL CONNECTION
 // ==========================================
 
-
 const db = mysql.createPool({
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT) || 3306,
@@ -36,21 +37,29 @@ const db = mysql.createPool({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     ssl: {
-        rejectUnauthorized: true
-    },
+    ca: fs.readFileSync(path.join(__dirname, "ca.pem"), "utf8")
+},,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
 });
 
-db.getConnection((error, connection) => {
+db.connect(function (error) {
+
     if (error) {
-        console.error("MySQL connection failed:", error.message);
+
+        console.log("MySQL connection failed:");
+        console.log(error.message);
+
     } else {
+
         console.log("MySQL connected successfully!");
-        connection.release();
+        console.log("Database: legateau_db");
+
     }
+
 });
+
 
 
 
