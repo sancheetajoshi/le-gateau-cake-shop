@@ -38,7 +38,7 @@ const db = mysql.createPool({
     database: process.env.DB_NAME,
     ssl: {
     ca: fs.readFileSync(path.join(__dirname, "ca.pem"), "utf8")
-},,
+},
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
