@@ -44,20 +44,13 @@ const db = mysql.createPool({
     queueLimit: 0
 });
 
-db.connect(function (error) {
-
+db.getConnection(function (error, connection) {
     if (error) {
-
-        console.log("MySQL connection failed:");
-        console.log(error.message);
-
+        console.error("MySQL connection failed:", error.message);
     } else {
-
         console.log("MySQL connected successfully!");
-        console.log("Database: legateau_db");
-
+        connection.release();
     }
-
 });
 
 
